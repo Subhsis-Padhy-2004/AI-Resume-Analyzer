@@ -14,9 +14,11 @@ const model = genAI.getGenerativeModel({
 });
 
 // create the Express application
-const app = express();
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "https://ai-resume-analyzer-tau-bice.vercel.app",
+  })
+);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");
