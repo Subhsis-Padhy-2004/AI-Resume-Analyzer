@@ -24,7 +24,7 @@ function App() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        "https://ai-resume-analyzer-v4ix.onrender.com/upload",
         formData,
       );
 
@@ -62,34 +62,32 @@ function App() {
       {analysis && (
         <div className="dashboard">
           <div className="card">
-  <h2>⭐ Resume Score</h2>
+            <h2>⭐ Resume Score</h2>
 
-  <div className="scoreContainer">
+            <div className="scoreContainer">
+              <div className="scoreCircle">
+                <h1>{analysis?.score || 0}</h1>
+                <span>/100</span>
+              </div>
 
-    <div className="scoreCircle">
-      <h1>{analysis?.score || 0}</h1>
-      <span>/100</span>
-    </div>
+              <p className="scoreText">
+                {(analysis?.score || 0) >= 80
+                  ? "Excellent Resume ⭐"
+                  : (analysis?.score || 0) >= 60
+                    ? "Good Resume 👍"
+                    : "Needs Improvement 📈"}
+              </p>
 
-    <p className="scoreText">
-      {(analysis?.score || 0) >= 80
-        ? "Excellent Resume ⭐"
-        : (analysis?.score || 0) >= 60
-        ? "Good Resume 👍"
-        : "Needs Improvement 📈"}
-    </p>
-
-    <div className="progress">
-      <div
-        className="progressFill"
-        style={{
-          width: `${analysis?.score || 0}%`,
-        }}
-      ></div>
-    </div>
-
-  </div>
-</div>
+              <div className="progress">
+                <div
+                  className="progressFill"
+                  style={{
+                    width: `${analysis?.score || 0}%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+          </div>
 
           <div className="card">
             <h2>📄 Summary</h2>
