@@ -51,6 +51,9 @@ app.post("/upload", upload.single("resume"), async (req, res) => {
   try {
     // Read the uploaded PDF
     const dataBuffer = fs.readFileSync(req.file.path);
+    if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads", { recursive: true });
+}
 
     // Extract text from the PDF
     const data = await pdfParse(dataBuffer);
