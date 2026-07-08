@@ -1,6 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
+const app = express();
+
 const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
@@ -14,6 +16,7 @@ const model = genAI.getGenerativeModel({
 });
 
 // create the Express application
+app.use(express.json());
 app.use(
   cors({
     origin: "https://ai-resume-analyzer-tau-bice.vercel.app",
