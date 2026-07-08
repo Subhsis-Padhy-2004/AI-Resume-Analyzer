@@ -23,7 +23,10 @@ const model = genAI.getGenerativeModel({
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://ai-resume-analyzer-tau-bice.vercel.app",
+    origin: [
+      "https://ai-resume-analyzer-tau-bice.vercel.app",
+      "https://ai-resume-analyzer-f7cijctf2-subhsis-padhy-2004s-projects.vercel.app",
+    ],
   })
 );
 const storage = multer.diskStorage({
