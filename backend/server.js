@@ -6,6 +6,10 @@ const app = express();
 const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
+    if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads", { recursive: true });
+}
+
 const pdfParse = require("pdf-parse");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -51,9 +55,7 @@ app.post("/upload", upload.single("resume"), async (req, res) => {
   try {
     // Read the uploaded PDF
     const dataBuffer = fs.readFileSync(req.file.path);
-    if (!fs.existsSync("uploads")) {
-  fs.mkdirSync("uploads", { recursive: true });
-}
+
 
     // Extract text from the PDF
     const data = await pdfParse(dataBuffer);
